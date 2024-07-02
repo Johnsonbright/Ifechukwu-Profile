@@ -1,0 +1,82 @@
+.intro {
+  height: calc(100vh-5rem);
+  width: 100vw;
+  max-width: 75rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.bg {
+  position: absolute;
+  top: -5rem;
+  right: 0;
+  z-index: -1;
+  object-fit: cover;
+height: 100vh;
+border: 1px solid black;
+max-height: fit-content;
+
+}
+.introcontent {
+  height:80vh;
+  width:100vw;
+  max-width: fit-content;
+  padding:2rem;
+  font-size: 3rem;
+  font-weight:700;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hello{
+  font-size: 1.75rem;
+  font-weight: 200;
+  
+}
+.introName{
+  color:yellow;
+}
+.introPara {
+  font-size: medium;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+.btn {
+  background-color: white;
+  border: 1px solid white;
+  height:2rem;
+  border-radius: 5px;
+}
+.btn-text {
+  font-size: large;
+  text-wrap:balance;
+  padding:0.75rem;
+  color:black;
+}
+
+@media screen and (max-width:840px) {
+  .bg {
+    right: -10vw;
+    
+   
+  }
+  .introcontent{
+    font-size:5vw ;
+  }
+  .hello{
+    font-size: 4.5vw;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .bg {
+    right: 20vw;
+    height: 50%;
+    top:-1rem;
+  }
+  .introcontent{
+    height:50vh;
+  width:100vw;
+  }
+}
