@@ -1,4 +1,4 @@
-#works{
+/* #works{
   min-height:calc(100vh-4rem);
   width:100vw;
   max-width:60rem;
@@ -50,5 +50,777 @@
 @media screen and (max-width:585px) {
   .worksimg{
     height:48vw;
+  }
+} */
+
+/* Enhanced Portfolio Section Styles */
+.portfolio-section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Background Elements */
+.portfolio-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-gradient-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%);
+}
+
+.bg-gradient-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 50%;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
+}
+
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  animation: shapeFloat 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 25%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+/* Header Styles */
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.portfolio-header.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.work-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.title-highlight {
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.2em;
+}
+
+.title-decoration {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  margin: 1rem auto 2rem;
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+.work-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+/* Category Filter */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.category-filter.animate-in-delayed {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn.active {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+.filter-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.filter-btn.active .filter-count {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.portfolio-grid.animate-in-grid {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+
+/* Portfolio Items */
+.portfolio-item {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: itemSlideIn 0.8s ease-out forwards;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Project Image */
+.project-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.portfolio-item:hover .project-image {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 107, 107, 0.9), rgba(255, 142, 83, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.portfolio-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  gap: 1rem;
+}
+
+.preview-btn,
+.link-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  transform: translateY(20px);
+}
+
+.portfolio-item:hover .preview-btn {
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.portfolio-item:hover .link-btn {
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.preview-btn:hover,
+.link-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.preview-btn svg,
+.link-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Category Badge */
+.category-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.portfolio-item:hover .category-badge {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Project Content */
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ff9a9e, #fecfef);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+/* Technologies */
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-badge {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Project Glow Effect */
+.project-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d, #ff9a9e, #fecfef);
+  border-radius: 22px;
+  opacity: 0;
+  z-index: -1;
+  animation: glowRotate 3s linear infinite;
+  transition: opacity 0.3s ease;
+}
+
+.project-glow.active {
+  opacity: 0.7;
+}
+
+/* Load More Section */
+.load-more-section {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.load-more-section.animate-in-final {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+
+.load-more-text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.load-more-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+  margin-bottom: 2rem;
+}
+
+.load-more-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+}
+
+.load-more-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.load-more-btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* Portfolio Stats */
+.portfolio-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Floating Action Button */
+.floating-contact {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.fab-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.fab-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+}
+
+.fab-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fab-tooltip {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.fab-btn:hover .fab-tooltip {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes itemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shapeFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes glowRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 3rem 1rem;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .category-filter {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .work-title {
+    font-size: 2.5rem;
+  }
+  
+  .work-description {
+    font-size: 1rem;
+  }
+  
+  .portfolio-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .load-more-section {
+    padding: 2rem 1rem;
+  }
+  
+  .floating-contact {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-image-container {
+    height: 200px;
+  }
+  
+  .project-content {
+    padding: 1rem;
+  }
+  
+  .project-title {
+    font-size: 1.2rem;
+  }
+  
+  .project-description {
+    font-size: 0.9rem;
+  }
+  
+  .tech-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+  
+  .category-filter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  .load-more-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .fab-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .fab-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .fab-tooltip {
+    right: 60px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .portfolio-section {
+    padding: 2rem 0.5rem;
+  }
+  
+  .portfolio-grid {
+    gap: 1rem;
+  }
+  
+  .portfolio-item {
+    margin: 0 0.5rem;
+  }
+  
+  .project-content {
+    padding: 0.8rem;
+  }
+  
+  .work-title {
+    font-size: 2rem;
+  }
+  
+  .work-description {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+  
+  .load-more-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .portfolio-stats {
+    gap: 0.5rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .portfolio-item {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .filter-btn {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .tech-badge {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .shape {
+    animation: none;
+  }
+  
+  .project-glow {
+    animation: none;
   }
 }
