@@ -28,32 +28,37 @@ export default function Contact() {
   const form = useRef();
 
 
-  const clients = [
-  {
-    id: 1,
-    name: "SmallClosedWorld Int'l Ltd",
-    image: "https://source.unsplash.com/random/100x100?tech-company",
-    color: "from-green-500 to-blue-500",
-  },
-  {
-    id: 2,
-    name: "Wellness-N (Freelance)",
-    image: "https://source.unsplash.com/random/100x100?health",
-    color: "from-pink-500 to-red-500",
-  },
-  {
-    id: 3,
-    name: "Martial-N (Freelance)",
-    image: "https://source.unsplash.com/random/100x100?martial-arts",
-    color: "from-yellow-500 to-orange-500",
-  },
-  {
-    id: 4,
-    name: "Wowzi Co.",
-    image: "https://source.unsplash.com/random/100x100?startup",
-    color: "from-indigo-500 to-purple-500",
-  }
-];
+
+const clients = [
+    {
+      id: 1,
+      name: "SmallClosedWorld Int'l Ltd",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=center",
+      fallback: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234ade80'/%3E%3Ctext x='50' y='35' fill='white' text-anchor='middle' font-family='Arial' font-size='8' font-weight='bold'%3ESmall%3C/text%3E%3Ctext x='50' y='45' fill='white' text-anchor='middle' font-family='Arial' font-size='8' font-weight='bold'%3EClosed%3C/text%3E%3Ctext x='50' y='55' fill='white' text-anchor='middle' font-family='Arial' font-size='8' font-weight='bold'%3EWorld%3C/text%3E%3Ctext x='50' y='70' fill='white' text-anchor='middle' font-family='Arial' font-size='6'%3EInt'l Ltd%3C/text%3E%3C/svg%3E",
+      color: "from-green-500 to-blue-500",
+    },
+    {
+      id: 2,
+      name: "Wellness-N (Freelance)",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&h=100&fit=crop&crop=center",
+      fallback: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ec4899'/%3E%3Ctext x='50' y='40' fill='white' text-anchor='middle' font-family='Arial' font-size='10' font-weight='bold'%3EWellness%3C/text%3E%3Ctext x='50' y='55' fill='white' text-anchor='middle' font-family='Arial' font-size='12' font-weight='bold'%3EN%3C/text%3E%3Ctext x='50' y='70' fill='white' text-anchor='middle' font-family='Arial' font-size='6'%3E(Freelance)%3C/text%3E%3C/svg%3E",
+      color: "from-pink-500 to-red-500",
+    },
+    {
+      id: 3,
+      name: "Martial-N (Freelance)",
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=100&h=100&fit=crop&crop=center",
+      fallback: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f59e0b'/%3E%3Ctext x='50' y='40' fill='white' text-anchor='middle' font-family='Arial' font-size='10' font-weight='bold'%3EMartial%3C/text%3E%3Ctext x='50' y='55' fill='white' text-anchor='middle' font-family='Arial' font-size='12' font-weight='bold'%3EN%3C/text%3E%3Ctext x='50' y='70' fill='white' text-anchor='middle' font-family='Arial' font-size='6'%3E(Freelance)%3C/text%3E%3C/svg%3E",
+      color: "from-yellow-500 to-orange-500",
+    },
+    {
+      id: 4,
+      name: "Wowzi Co.",
+      image: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=100&h=100&fit=crop&crop=center",
+      fallback: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236366f1'/%3E%3Ctext x='50' y='40' fill='white' text-anchor='middle' font-family='Arial' font-size='12' font-weight='bold'%3EWowzi%3C/text%3E%3Ctext x='50' y='60' fill='white' text-anchor='middle' font-family='Arial' font-size='10'%3ECo.%3C/text%3E%3C/svg%3E",
+      color: "from-indigo-500 to-purple-500",
+    }
+  ];
 
   
   const socialLinks = [

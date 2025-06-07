@@ -239,12 +239,19 @@ export default function Work() {
             <p className="load-more-text">
               Want to see more of my work? Check out my complete portfolio and case studies.
             </p>
+                <a
+            href="https://github.com/Johnsonbright?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="load-more-btn-link"
+          >
             <button className="load-more-btn">
               <span>View Complete Portfolio</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
+              </a>
           </div>
           
           {/* Stats */}
