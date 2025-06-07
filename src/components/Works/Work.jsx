@@ -1,90 +1,95 @@
-// import React from 'react'
-// import './Work.css';
-// import portfolio1 from '../../assets/porfolio1.jpeg'
-// import portfolio2 from '../../assets/portfolio2.jpg'
-// import portfolio3 from '../../assets/portfolio3.png'
-// import portfolio4 from '../../assets/portfolio4.jpeg'
-// import portfolio5 from '../../assets/Portfolio5.jpeg'
-// import portfolio6 from '../../assets/portfolio6.avif'
-
-// export default function Work() {
-//   return (
-//     <section id='works'>
-//       <h2 className="workTitle">My Portfolio</h2>
-//       <p className="workDesc">I take pride in paying attention to the smallest details and making sure that my work is pixel perfect. I am excited to bring my skills and experience to help business achive their goals and create a strong online presence.</p>
-//       <div className="worksImgs">
-//         <img src={portfolio1} alt="portfolio1" className="worksimg" />
-//         <img src={portfolio2} alt="portfolio2" className="worksimg" /><img src={portfolio3} alt="portfolio3" className="worksimg" /><img src={portfolio4} alt="portfolio4" className="worksimg" />
-//         <img src={portfolio5} alt="portfolio5" className="worksimg" /><img src={portfolio6} alt="porfolio6"className="worksimg" />
-//       </div>
-//       <button className="worksBtn">See More</button>
-//     </section>
-//   )
-// }
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import './Work.css';
 
-// Mock portfolio data - replace with your actual imports and data
+// Updated portfolio data from GitHub projects
 const portfolioData = [
+  // React Projects
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Ecommerce Platform",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=400&fit=crop",
-    description: "Modern e-commerce solution with advanced features",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    link: "#"
+    description: "Full-featured e-commerce solution built with React",
+    technologies: ["React", "Stripe", "MongoDB"],
+    link: "https://github.com/Johnsonbright/Ecommerce"
   },
   {
     id: 2,
-    title: "Mobile Banking App",
-    category: "Mobile Design",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=400&fit=crop",
-    description: "Secure banking application with intuitive UX",
-    technologies: ["React Native", "Firebase", "Biometrics"],
-    link: "#"
+    title: "Gemini Clone",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1611171711914-0b2e2a3f3bd6?w=500&h=400&fit=crop",
+    description: "Recreated Gemini web interface using modern frontend tools",
+    technologies: ["React", "Vite"],
+    link: "https://github.com/Johnsonbright/Gemini-Clone"
   },
   {
     id: 3,
-    title: "SaaS Dashboard",
-    category: "UI/UX Design",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=400&fit=crop",
-    description: "Analytics dashboard for business intelligence",
-    technologies: ["Vue.js", "D3.js", "Chart.js"],
-    link: "#"
+    title: "Bankist App",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&h=400&fit=crop",
+    description: "Simulated online banking experience using React",
+    technologies: ["React", "JavaScript"],
+    link: "https://github.com/Johnsonbright/Bankist"
   },
   {
     id: 4,
-    title: "Real Estate Platform",
+    title: "News App",
     category: "Web Development",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=400&fit=crop",
-    description: "Property listing and management system",
-    technologies: ["React", "Express", "PostgreSQL"],
-    link: "#"
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&h=400&fit=crop",
+    description: "Live news headlines built with React and APIs",
+    technologies: ["React", "API", "CSS"],
+    link: "https://github.com/Johnsonbright/NewsApp"
   },
+
+  // React Native Projects
   {
     id: 5,
-    title: "Food Delivery App",
+    title: "Chitchat - Social Media App",
     category: "Mobile Design",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=500&h=400&fit=crop",
-    description: "On-demand food delivery mobile application",
-    technologies: ["Flutter", "Firebase", "Maps API"],
-    link: "#"
+    image: "https://images.unsplash.com/photo-1611605691625-62d201f20fda?w=500&h=400&fit=crop",
+    description: "A full-fledged social platform with posts, mentions, and messaging",
+    technologies: ["React Native", "Redux", "Firebase"],
+    link: "https://github.com/Johnsonbright"
   },
   {
     id: 6,
-    title: "Portfolio Website",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&h=400&fit=crop",
-    description: "Creative portfolio with modern animations",
-    technologies: ["React", "Three.js", "GSAP"],
-    link: "#"
+    title: "ShopAndDeliver Onboarding",
+    category: "Mobile Design",
+    image: "https://images.unsplash.com/photo-1581291519195-ef11498d1cf5?w=500&h=400&fit=crop",
+    description: "Onboarding flow for a logistics/delivery mobile app",
+    technologies: ["React Native", "Animations"],
+    link: "https://github.com/Johnsonbright/shopanddeliver"
+  },
+  {
+    id: 7,
+    title: "iMovieApp",
+    category: "Mobile Design",
+    image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=500&h=400&fit=crop",
+    description: "Movie discovery and playback mobile app",
+    technologies: ["React Native"],
+    link: "https://github.com/Johnsonbright"
+  },
+  {
+    id: 8,
+    title: "React Native Password Generator",
+    category: "Mobile Design",
+    image: "https://images.unsplash.com/photo-1608315398428-e17340a0a93d?w=500&h=400&fit=crop",
+    description: "Secure password generator app for mobile devices",
+    technologies: ["React Native", "Random Logic"],
+    link: "https://github.com/Johnsonbright/React-Native-Password-Generator"
+  },
+  {
+    id: 9,
+    title: "Aora - Video Upload Platform",
+    category: "Mobile Design",
+    image: "https://images.unsplash.com/photo-1611605691625-62d201f20fda?w=500&h=400&fit=crop",
+    description: "Video creation and upload app supporting creators",
+    technologies: ["React Native", "Video API"],
+    link: "https://github.com/Johnsonbright"
   }
 ];
 
-const categories = ["All", "Web Development", "Mobile Design", "UI/UX Design"];
+const categories = ["All", "Web Development", "Mobile Design"];
 
 export default function Work() {
   const [isVisible, setIsVisible] = useState(false);
@@ -103,10 +108,7 @@ export default function Work() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -114,13 +116,13 @@ export default function Work() {
     if (activeCategory === "All") {
       setFilteredProjects(portfolioData);
     } else {
-      setFilteredProjects(portfolioData.filter(project => project.category === activeCategory));
+      setFilteredProjects(
+        portfolioData.filter((project) => project.category === activeCategory)
+      );
     }
   }, [activeCategory]);
 
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-  };
+  const handleCategoryChange = (category) => setActiveCategory(category);
 
   return (
     <section id="works" className="portfolio-section" ref={sectionRef}>
@@ -182,6 +184,10 @@ export default function Work() {
                   src={project.image} 
                   alt={project.title}
                   className="project-image"
+                  onError={(e) => {
+                   e.target.onerror = null;
+                   e.target.src = "assets/placeholder.png"; // Fallback image
+                  }}
                 />
                 <div className="image-overlay">
                   <div className="overlay-content">
