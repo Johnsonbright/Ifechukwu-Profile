@@ -49,7 +49,7 @@ export default function Intro() {
           </div>
           
           <p className="intro-description">
-            I craft beautiful, responsive websites that deliver exceptional user experiences. 
+            I craft intuitive, responsive websites that deliver exceptional user experiences. 
             With a passion for clean code and innovative design, I bring digital visions to life.
           </p>
           
