@@ -1,15 +1,16 @@
 {
+  "homepage": "https://Johnsonbright.github.io/Ifechukwu-Profile/",
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/Johnsonbright/Ifechukwu-Profile",
+ 
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",

@@ -53,32 +53,33 @@ export default function Skill() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
 
+ 
   const skills = [
-    {
-      id: 1,
-      title: "UI/UX Design",
-      description: "Creating intuitive and visually stunning user interfaces that provide exceptional user experiences across all platforms.",
-      image: ui,
-      technologies: ["Figma", "Adobe XD", "Sketch", "Prototyping"],
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      id: 2,
-      title: "Web Development",
-      description: "Building responsive, high-performance websites using modern technologies and best practices for optimal user engagement.",
-      image: webdesign,
-      technologies: ["React", "HTML5", "CSS3", "JavaScript"],
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      id: 3,
-      title: "Mobile App Design",
-      description: "Designing beautiful, functional mobile applications that deliver seamless experiences on iOS and Android platforms.",
-      image: appdesign,
-      technologies: ["React Native", "Flutter", "iOS", "Android"],
-      color: "from-green-500 to-teal-500"
-    }
-  ];
+  {
+    id: 1,
+    title: "Front-End Development",
+    description: "Specialized in building responsive, high-performance user interfaces using React, JavaScript, and TypeScript. Committed to clean, maintainable code and seamless user experiences.",
+    image: webdesign,
+    technologies: ["React", "JavaScript", "TypeScript", "HTML5", "CSS3", "Git"],
+    color: "from-blue-600 to-indigo-600"
+  },
+  {
+    id: 2,
+    title: "Mobile App Development",
+    description: "Experienced in building and optimizing cross-platform mobile applications with React Native. Focused on clean architecture, state management, and feature-rich user interfaces.",
+    image: appdesign,
+    technologies: ["React Native", "Redux", "TypeScript", "Android", "iOS"],
+    color: "from-green-600 to-teal-600"
+  },
+  {
+    id: 3,
+    title: "UI/UX Implementation",
+    description: "Collaborates closely with product and design teams to bring wireframes and prototypes to life, ensuring intuitive and engaging user experiences.",
+    image: ui,
+    technologies: ["Figma", "Prototyping", "User Flow", "Component Design"],
+    color: "from-purple-500 to-pink-500"
+  }
+];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
