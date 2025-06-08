@@ -156,7 +156,93 @@ const clients = [
   };
 
   return (
-    <section className="contact-page" id="contactPage" ref={sectionRef}>
+    <>
+         <style>
+        {`
+          @keyframes float {
+            0%, 100% { 
+              transform: translate(0, 0) scale(1); 
+            }
+            33% { 
+              transform: translate(30px, -30px) scale(1.1); 
+            }
+            66% { 
+              transform: translate(-20px, 20px) scale(0.9); 
+            }
+          }
+
+          @keyframes expandWidth {
+            from { 
+              width: 0; 
+            }
+            to { 
+              width: 100px; 
+            }
+          }
+
+          @keyframes particleFloat {
+            0%, 100% { 
+              transform: translateY(0px) rotate(0deg); 
+              opacity: 0.6; 
+            }
+            50% { 
+              transform: translateY(-30px) rotate(180deg); 
+              opacity: 1; 
+            }
+          }
+
+          @keyframes spin {
+            0% { 
+              transform: rotate(0deg); 
+            }
+            100% { 
+              transform: rotate(360deg); 
+            }
+          }
+
+          .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+          }
+
+          .form-input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+          }
+
+          .submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+          }
+
+          .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+          }
+
+          .client-card:hover .client-image {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.6);
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .contact-section {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}
+      </style>
+       <section className="contact-page" id="contactPage" ref={sectionRef}>
       {/* Background Elements */}
       <div className="bg-elements">
         <div className="bg-circle circle-1"></div>
@@ -323,5 +409,7 @@ const clients = [
         </div>
       </div>
     </section>
+    </>
+   
   );
 }
