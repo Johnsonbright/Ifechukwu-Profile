@@ -16,6 +16,9 @@ function App() {
       if (!hasInteracted) {
         setHasInteracted(true);
         const utterance = new SpeechSynthesisUtterance('Welcome');
+         utterance.rate = 0.8;
+         utterance.pitch = 1.2;
+        utterance.volume = 0.7;
         window.speechSynthesis.speak(utterance);
       }
     };
