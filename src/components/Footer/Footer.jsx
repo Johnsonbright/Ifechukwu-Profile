@@ -86,7 +86,7 @@ export default function Footer() {
             </div>
             <div className="brand-info">
               <h3>Ifechukwu Johnson Uzoma</h3>
-              <p>Full Stack Developer & UI/UX Designer</p>
+              <p>Front End And Mobile Developer</p>
             </div>
           </div>
 
@@ -106,7 +106,6 @@ export default function Footer() {
               <h4>Services</h4>
               <ul>
                 <li><a href="#web-development">Web Development</a></li>
-                <li><a href="#ui-design">UI/UX Design</a></li>
                 <li><a href="#mobile-apps">Mobile Apps</a></li>
                 <li><a href="#consulting">Consulting</a></li>
               </ul>
