@@ -15,7 +15,7 @@ function App() {
     const handleFirstInteraction = () => {
       if (!hasInteracted) {
         setHasInteracted(true);
-        const utterance = new SpeechSynthesisUtterance('Welcome to my portfolio');
+        const utterance = new SpeechSynthesisUtterance('Welcome');
         window.speechSynthesis.speak(utterance);
       }
     };
