@@ -7,6 +7,7 @@ export default function Intro() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const roles = [
     "Frontend Engineer", 
@@ -27,16 +28,15 @@ export default function Intro() {
 
   // Function to handle PDF download
   const handleResumeDownload = () => {
-    // Create a temporary anchor element
     const link = document.createElement('a');
     link.href = resumePDF;
-    link.download = 'Ifechukwu_Resume.pdf'; // Set the filename for download
+    link.download = 'Ifechukwu_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  // Function to open PDF in new tab (alternative option)
+  // Function to open PDF in new tab
   const handleResumeView = () => {
     window.open(resumePDF, '_blank');
   };
@@ -58,6 +58,28 @@ export default function Intro() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showDropdown]);
 
+  // Mobile detection with better debouncing
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    
+    let timeoutId;
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkMobile, 150);
+    };
+    
+    window.addEventListener('resize', debouncedResize);
+    
+    return () => {
+      window.removeEventListener('resize', debouncedResize);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const styles = {
     // Main container styles
     introSection: {
@@ -67,18 +89,15 @@ export default function Intro() {
       position: 'relative',
       overflow: 'hidden',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '2rem 1rem',
-      '@media (max-width: 768px)': {
-        padding: '1rem 0.5rem',
-      }
+      padding: isMobile ? '1rem 0.5rem 6rem' : '2rem 1rem', // Added bottom padding for mobile
     },
 
     introContainer: {
       maxWidth: '1200px',
       margin: '0 auto',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '4rem',
+      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+      gap: isMobile ? '2rem' : '4rem',
       alignItems: 'center',
       zIndex: 2,
       position: 'relative',
@@ -90,6 +109,8 @@ export default function Intro() {
       opacity: isVisible ? 1 : 0,
       transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
       transition: 'all 0.8s ease-out',
+      textAlign: isMobile ? 'center' : 'left',
+      order: isMobile ? 2 : 1,
     },
 
     greetingWrapper: {
@@ -128,6 +149,7 @@ export default function Intro() {
       height: 'clamp(2.5rem, 5vw, 3rem)',
       display: 'flex',
       alignItems: 'center',
+      justifyContent: isMobile ? 'center' : 'flex-start',
     },
 
     roleText: {
@@ -158,22 +180,29 @@ export default function Intro() {
     ctaWrapper: {
       display: 'flex',
       gap: '1rem',
-      marginBottom: '2rem',
+      marginBottom: isMobile ? '3rem' : '2rem', // Increased margin for mobile
       flexWrap: 'wrap',
+      flexDirection: isMobile ? 'column' : 'row',
+      alignItems: isMobile ? 'center' : 'stretch',
     },
 
     ctaLink: {
       textDecoration: 'none',
-      flex: '1',
-      minWidth: '200px',
+      flex: isMobile ? 'none' : '1',
+      width: isMobile ? '100%' : 'auto',
+      maxWidth: isMobile ? '280px' : 'none',
+      minWidth: isMobile ? 'auto' : '200px',
     },
 
-    // Resume button group styles
+    // Resume button group styles - FIXED for mobile
     resumeButtonGroup: {
       display: 'flex',
       gap: '0.5rem',
-      flex: '1',
-      minWidth: '200px',
+      flex: isMobile ? 'none' : '1',
+      width: isMobile ? '100%' : 'auto',
+      maxWidth: isMobile ? '280px' : 'none',
+      minWidth: isMobile ? 'auto' : '200px',
+      position: 'relative', // Important for dropdown positioning
     },
 
     resumeButtonMain: {
@@ -188,18 +217,23 @@ export default function Intro() {
       position: 'relative',
     },
 
+    // FIXED dropdown menu positioning for mobile
     dropdownMenu: {
       position: 'absolute',
       top: '100%',
-      right: '0',
+      right: isMobile ? '0' : '0',
+      left: isMobile ? '0' : 'auto', // Full width on mobile
       background: 'rgba(255, 255, 255, 0.95)',
       backdropFilter: 'blur(10px)',
       borderRadius: '12px',
       padding: '0.5rem 0',
-      minWidth: '160px',
+      minWidth: isMobile ? '100%' : '160px',
       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
       zIndex: 1000,
       marginTop: '0.5rem',
+      // Ensure it doesn't go off-screen on mobile
+      maxWidth: isMobile ? '100vw' : '200px',
+      transform: isMobile ? 'translateX(0)' : 'none',
     },
 
     dropdownItem: {
@@ -212,10 +246,6 @@ export default function Intro() {
       gap: '0.5rem',
       fontSize: '0.9rem',
       fontWeight: '500',
-    },
-
-    dropdownItemHover: {
-      background: 'rgba(0, 0, 0, 0.1)',
     },
 
     ctaButton: {
@@ -234,7 +264,7 @@ export default function Intro() {
       position: 'relative',
       overflow: 'hidden',
       width: '100%',
-        height: '100%',
+      height: '100%',
     },
 
     ctaButtonPrimary: {
@@ -262,12 +292,13 @@ export default function Intro() {
       transition: 'transform 0.3s ease',
     },
 
-    // Social links styles
+    // FIXED social links styles for mobile
     socialLinks: {
       display: 'flex',
       gap: '1rem',
       justifyContent: 'center',
       flexWrap: 'wrap',
+      marginBottom: isMobile ? '1rem' : '0', // Add margin for mobile spacing
     },
 
     socialLink: {
@@ -296,6 +327,7 @@ export default function Intro() {
       transition: 'all 1s ease-out 0.4s',
       display: 'flex',
       justifyContent: 'center',
+      order: isMobile ? 1 : 2,
     },
 
     imageContainer: {
@@ -303,7 +335,6 @@ export default function Intro() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      
     },
 
     imageBackdrop: {
@@ -317,8 +348,8 @@ export default function Intro() {
     },
 
     profileImage: {
-      width: 'clamp(200px, 60vw, 450px)',
-      height: 'clamp(300px, 70vw, 500px)',
+      width: isMobile ? 'clamp(180px, 50vw, 300px)' : 'clamp(200px, 60vw, 450px)',
+      height: isMobile ? 'clamp(180px, 50vw, 300px)' : 'clamp(300px, 70vw, 500px)',
       borderRadius: '50%',
       objectFit: 'cover',
       border: '4px solid rgba(255, 255, 255, 0.2)',
@@ -340,14 +371,30 @@ export default function Intro() {
 
     floatingElement: {
       position: 'absolute',
-      fontSize: 'clamp(1.2rem, 3vw, 2rem)',
+      fontSize: isMobile ? 'clamp(1rem, 2.5vw, 1.5rem)' : 'clamp(1.2rem, 3vw, 2rem)',
       animation: 'float 3s ease-in-out infinite',
     },
 
-    element1: { top: '10%', right: '100%', animationDelay: '0s' },
-    element2: { top: '5%', left: '100%', animationDelay: '0.5s' },
-    element3: { bottom: '1%', right: '105%', animationDelay: '1s' },
-    element4: { bottom: '1%', left: '100%', animationDelay: '1.5s' },
+    element1: { 
+      top: '10%', 
+      right: isMobile ? '90%' : '100%', 
+      animationDelay: '0s' 
+    },
+    element2: { 
+      top: '5%', 
+      left: isMobile ? '90%' : '100%', 
+      animationDelay: '0.5s' 
+    },
+    element3: { 
+      bottom: '1%', 
+      right: isMobile ? '90%' : '105%', 
+      animationDelay: '1s' 
+    },
+    element4: { 
+      bottom: '1%', 
+      left: isMobile ? '90%' : '100%', 
+      animationDelay: '1.5s' 
+    },
 
     // Background elements
     backgroundElements: {
@@ -391,14 +438,15 @@ export default function Intro() {
       animationDelay: '4s',
     },
 
-    // Scroll indicator
+    // FIXED scroll indicator positioning
     scrollIndicator: {
       position: 'absolute',
-      bottom: '2rem',
+      bottom: isMobile ? '1rem' : '2rem', // Reduced bottom margin on mobile
       left: '50%',
       transform: 'translateX(-50%)',
       textAlign: 'center',
       color: 'rgba(255, 255, 255, 0.7)',
+      zIndex: 10, // Ensure it's above other elements
     },
 
     scrollIndicatorLink: {
@@ -412,74 +460,31 @@ export default function Intro() {
     },
 
     scrollMouse: {
-      width: '24px',
-      height: '40px',
+      width: isMobile ? '20px' : '24px',
+      height: isMobile ? '32px' : '40px',
       border: '2px solid currentColor',
-      borderRadius: '12px',
+      borderRadius: isMobile ? '10px' : '12px',
       position: 'relative',
       marginBottom: '0.5rem',
     },
 
     scrollWheel: {
       width: '3px',
-      height: '10px',
+      height: isMobile ? '8px' : '10px',
       background: 'currentColor',
       borderRadius: '2px',
       position: 'absolute',
-      top: '8px',
+      top: isMobile ? '6px' : '8px',
       left: '50%',
       transform: 'translateX(-50%)',
       animation: 'scrollWheel 2s ease-in-out infinite',
     },
 
     scrollText: {
-      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+      fontSize: 'clamp(0.7rem, 1.8vw, 0.9rem)',
       fontWeight: '500',
     },
-
-    // Responsive overrides
-    mobileContainer: {
-      gridTemplateColumns: '1fr',
-      gap: '2rem',
-      textAlign: 'center',
-    },
-
-    mobileContent: {
-      order: 2,
-    },
-
-    mobileImageWrapper: {
-      order: 1,
-    },
-
-    mobileCtaWrapper: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-
-    mobileCtaLink: {
-      width: '100%',
-      maxWidth: '280px',
-    },
-
-    mobileSocialLinks: {
-      justifyContent: 'center',
-    },
   };
-
-  // Determine if mobile view
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <>
@@ -536,6 +541,25 @@ export default function Intro() {
           .scroll-indicator:hover {
             color: white;
           }
+
+          /* Mobile-specific styles */
+          @media (max-width: 768px) {
+            .resume-button-group {
+              position: relative;
+            }
+            
+            .dropdown-menu {
+              left: 0 !important;
+              right: 0 !important;
+              width: 100% !important;
+              min-width: 100% !important;
+            }
+            
+            /* Ensure social links don't overlap scroll indicator */
+            .social-links {
+              margin-bottom: 2rem;
+            }
+          }
         `}
       </style>
       
@@ -543,19 +567,9 @@ export default function Intro() {
         id="intro" 
         style={styles.introSection}
       >
-        <div 
-          style={{
-            ...styles.introContainer,
-            ...(isMobile ? styles.mobileContainer : {})
-          }}
-        >
+        <div style={styles.introContainer}>
           {/* Content Side */}
-          <div 
-            style={{
-              ...styles.introContent,
-              ...(isMobile ? styles.mobileContent : {})
-            }}
-          >
+          <div style={styles.introContent}>
             <div style={styles.greetingWrapper}>
               <span style={styles.greeting}>Hello there! 👋</span>
             </div>
@@ -579,20 +593,12 @@ export default function Intro() {
               With a passion for clean code and innovative design, I bring digital visions to life.
             </p>
             
-            <div 
-              style={{
-                ...styles.ctaWrapper,
-                ...(isMobile ? styles.mobileCtaWrapper : {})
-              }}
-            >
+            <div style={styles.ctaWrapper}>
               <Link 
                 to="contact" 
                 smooth={true} 
                 duration={500}
-                style={{
-                  ...styles.ctaLink,
-                  ...(isMobile ? styles.mobileCtaLink : {})
-                }}
+                style={styles.ctaLink}
               >
                 <button 
                   className="cta-button"
@@ -611,13 +617,10 @@ export default function Intro() {
                 </button>
               </Link>
               
-              {/* Updated Resume Button with Dropdown */}
+              {/* Fixed Resume Button with Dropdown */}
               <div 
                 className="resume-button-group"
-                style={{
-                  ...styles.resumeButtonGroup,
-                  ...(isMobile ? styles.mobileCtaLink : {})
-                }}
+                style={styles.resumeButtonGroup}
               >
                 <button 
                   className="cta-button"
@@ -651,7 +654,7 @@ export default function Intro() {
                   }}
                   onClick={toggleDropdown}
                 >
-                   <span>View</span>
+                  <span>View</span>
                   <svg 
                     style={{
                       width: '16px',
@@ -668,7 +671,10 @@ export default function Intro() {
                 </button>
 
                 {showDropdown && (
-                  <div style={styles.dropdownMenu}>
+                  <div 
+                    className="dropdown-menu"
+                    style={styles.dropdownMenu}
+                  >
                     <div 
                       style={styles.dropdownItem}
                       onClick={() => {
@@ -716,12 +722,10 @@ export default function Intro() {
               </div>
             </div>
             
-            {/* Social Links */}
+            {/* Fixed Social Links */}
             <div 
-              style={{
-                ...styles.socialLinks,
-                ...(isMobile ? styles.mobileSocialLinks : {})
-              }}
+              className="social-links"
+              style={styles.socialLinks}
             >
               <a href="#" className="social-link" style={styles.socialLink} aria-label="LinkedIn">
                 <svg style={styles.socialLinkSvg} viewBox="0 0 24 24" fill="currentColor">
