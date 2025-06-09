@@ -9,29 +9,29 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [hasInteracted, setHasInteracted] = useState(false);
+  // const [hasInteracted, setHasInteracted] = useState(false);
 
-  useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (!hasInteracted) {
-        setHasInteracted(true);
-        const utterance = new SpeechSynthesisUtterance('Welcome');
-         utterance.rate = 0.8;
-         utterance.pitch = 1.2;
-        utterance.volume = 0.7;
-        window.speechSynthesis.speak(utterance);
-      }
-    };
+  // useEffect(() => {
+  //   const handleFirstInteraction = () => {
+  //     if (!hasInteracted) {
+  //       setHasInteracted(true);
+  //       const utterance = new SpeechSynthesisUtterance('Welcome');
+  //        utterance.rate = 0.8;
+  //        utterance.pitch = 1.2;
+  //       utterance.volume = 0.7;
+  //       window.speechSynthesis.speak(utterance);
+  //     }
+  //   };
 
-    // Listen for any user interaction
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('keydown', handleFirstInteraction);
+  //   // Listen for any user interaction
+  //   document.addEventListener('click', handleFirstInteraction);
+  //   document.addEventListener('keydown', handleFirstInteraction);
 
-    return () => {
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
-    };
-  }, [hasInteracted]);
+  //   return () => {
+  //     document.removeEventListener('click', handleFirstInteraction);
+  //     document.removeEventListener('keydown', handleFirstInteraction);
+  //   };
+  // }, [hasInteracted]);
   
 
   return (
