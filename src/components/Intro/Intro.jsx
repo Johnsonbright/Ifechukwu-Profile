@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import picture from '../../assets/intropic.jpeg'
-import resumePDF from '../../assets/Ifechukwu_Resume.pdf'
+import resumePDF from '../../assets/Contact.pdf';
 
 export default function Intro() {
   const [isVisible, setIsVisible] = useState(false);
